@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{%  extends "task_logger/index.html" %}
+
+
+{% block button_block %}
+<h1>CLOCKED IN</h1>
+
+<form method="post">
+
+<button name="stop_button" value="Stop" type="submit">Stop</button>
+{% csrf_token %}
+
+</form>
+{% endblock %}
