@@ -2,10 +2,18 @@ from django.shortcuts import render
 from task_logger.models import Time_record
 from task_logger.filters import all_for_user, current_entry
 from django.utils import timezone
+from task_logger.calc import day_total_duration, format_duration_hhmm
+
 # Create your views here.
 
 
 def index(request):
+    #TODO 1. fix the issue of pottentially clocking out on multiple open entries
+    #TODO 2. add error logging to extra open entries
+    #TODO 3. add rudementary reports
+    #TODO 4. add approvals and editing
+    #TODO 5. add 'clocked in since xx:xx' to template
+    #TODO 6. add user authentication
     #check for current userID
     curent_user = 'amcdaniel'
 
@@ -42,3 +50,12 @@ def index(request):
         page_mode = 'task_logger/Start-mode.html'
 
     return render(request, page_mode)
+
+def reports(request):
+
+    context = {'total_today': format_duration_hhmm(day_total_duration('amcdaniel', 2018, 5, 15))}
+    return render(request, 'task_logger/Reports.html' ,context)
+
+
+def approvals(request):
+    pass
