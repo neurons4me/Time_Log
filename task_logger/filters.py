@@ -1,5 +1,4 @@
 from task_logger.models import Time_record
-from datetime import datetime
 
 def all_for_user(user):
         return Time_record.objects.filter(user_id=user)

@@ -4,6 +4,7 @@ from task_logger.filters import all_for_user, current_entry
 from django.utils import timezone
 from task_logger.calc import day_total_duration, format_duration_hhmm
 from django.contrib.auth.decorators import login_required
+from task_logger.dates import latest_week_dates
 
 # Create your views here.
 
@@ -14,18 +15,9 @@ def index(request):
     #TODO 3. add rudementary reports
     #TODO 4. add approvals and editing
     #TODO 5. add 'clocked in since xx:xx' to template
-    #TODO 6. add user authentication
-    #check for current userID
-    curent_user = 'amcdaniel'
+    #TODO 6. add meal in/meal out
 
-    #query all entries for current userID
-    all_user_entries = all_for_user(curent_user)
-
-    #check if all entries are marked as complete
-    # for entry in all_user_entries:
-    #     if entry.activity_end.__isnull:
-    #         print('I should display the clock out button')
-       #if an in progress entry found display the clock out button via render_context dictionary
+    curent_user = request.user.username
 
     # if no incomplete entries display the 'start button'
     if len(current_entry(curent_user)) == 0:
@@ -54,8 +46,14 @@ def index(request):
 
 @login_required
 def reports(request):
-
-    context = {'total_today': format_duration_hhmm(day_total_duration('amcdaniel', 2018, 5, 15))}
+    curent_user = request.user.username
+    date_list = []
+    for day in latest_week_dates():
+        date_list.append(format_duration_hhmm(day_total_duration(curent_user, day.year, day.month, day.day)))
+        #TODO add dates to context dict so we can display that was well
+        #TODO include this simple report on main clock in/clock out views
+    context = {'total_today': format_duration_hhmm(day_total_duration(curent_user, 2018, 5, 15)),
+               'date_list': date_list}
     return render(request, 'task_logger/Reports.html' ,context)
 
 

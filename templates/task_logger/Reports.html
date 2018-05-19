@@ -7,5 +7,26 @@
 <body>
 <h1>Today's total clocked in time is:</h1>
 {{ total_today }}
+
+<table>
+    <tr>
+       <th>Monday</th>
+       <th>Tuesday</th>
+       <th>Wednesday</th>
+       <th>Thursday</th>
+       <th>Friday</th>
+       <th>Saturday</th>
+       <th>Sunday</th>
+    </tr>
+
+    <tr>
+        {% for day_total in date_list %}
+        <td>{{ day_total }}</td>
+        {% endfor %}
+
+
+    </tr>
+
+</table>
 </body>
 </html>
