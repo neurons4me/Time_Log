@@ -3,10 +3,11 @@ from task_logger.models import Time_record
 from task_logger.filters import all_for_user, current_entry
 from django.utils import timezone
 from task_logger.calc import day_total_duration, format_duration_hhmm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+@login_required
 def index(request):
     #TODO 1. fix the issue of pottentially clocking out on multiple open entries
     #TODO 2. add error logging to extra open entries
@@ -28,7 +29,6 @@ def index(request):
 
     # if no incomplete entries display the 'start button'
     if len(current_entry(curent_user)) == 0:
-        print('DISPLAY START')
         page_mode = 'task_logger/Start-mode.html'
 
     else:
@@ -51,11 +51,19 @@ def index(request):
 
     return render(request, page_mode)
 
+
+@login_required
 def reports(request):
 
     context = {'total_today': format_duration_hhmm(day_total_duration('amcdaniel', 2018, 5, 15))}
     return render(request, 'task_logger/Reports.html' ,context)
 
 
+@login_required
 def approvals(request):
     pass
+
+
+@login_required
+def user_creation(request):
+    registered = False

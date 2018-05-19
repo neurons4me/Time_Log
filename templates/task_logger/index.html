@@ -6,12 +6,14 @@
 </head>
 <body>
 
-<h1>test page</h1>
+<h1>Time Clock</h1>
+<h2>{{ user.username }}</h2>
 {% block button_block %}
 
 {% endblock %}
 
-
+{% url 'logout' as the_url %}
+<a href="{{ the_url }}">Log out</a>
 
 
 
