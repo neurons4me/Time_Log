@@ -8,6 +8,8 @@
 <h1>Today's total clocked in time is:</h1>
 {{ total_today }}
 
+
+<h2>Current Week's Totals</h2>
 <table>
     <tr>
        <th>Monday</th>
@@ -17,6 +19,18 @@
        <th>Friday</th>
        <th>Saturday</th>
        <th>Sunday</th>
+    </tr>
+
+    <tr>
+        <th>{{ latest_dates_list.0 }}</th>
+        <th>{{ latest_dates_list.1 }}</th>
+        <th>{{ latest_dates_list.2 }}</th>
+        <th>{{ latest_dates_list.3 }}</th>
+        <th>{{ latest_dates_list.4 }}</th>
+        <th>{{ latest_dates_list.5 }}</th>
+        <th>{{ latest_dates_list.6 }}</th>
+
+
     </tr>
 
     <tr>

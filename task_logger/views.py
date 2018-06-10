@@ -22,6 +22,7 @@ def index(request):
     # if no incomplete entries display the 'start button'
     if len(current_entry(curent_user)) == 0:
         page_mode = 'task_logger/Start-mode.html'
+        # TODO for meal in/out need to add button for 'start meal break'
 
     else:
         page_mode = 'task_logger/Stop-mode.html'
@@ -52,8 +53,11 @@ def reports(request):
         date_list.append(format_duration_hhmm(day_total_duration(curent_user, day.year, day.month, day.day)))
         #TODO add dates to context dict so we can display that was well
         #TODO include this simple report on main clock in/clock out views
-    context = {'total_today': format_duration_hhmm(day_total_duration(curent_user, 2018, 5, 15)),
-               'date_list': date_list}
+    today = timezone.now()
+    context = {'total_today': format_duration_hhmm(day_total_duration(curent_user, today.year, today.month, today.day)),
+               'date_list': date_list,
+               'latest_dates_list' : latest_week_dates(formatted=True)
+               }
     return render(request, 'task_logger/Reports.html' ,context)
 
 
