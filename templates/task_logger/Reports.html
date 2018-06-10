@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Reporting</title>
-</head>
+{% extends 'base.html' %}
+
+{% block title %}Reports{% endblock %}
+
+{% block body_block %}
+
+
+
 <body>
 <h1>Today's total clocked in time is:</h1>
 {{ total_today }}
@@ -43,4 +46,5 @@
 
 </table>
 </body>
-</html>
+
+{% endblock %}

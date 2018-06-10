@@ -53,6 +53,8 @@ def reports(request):
         date_list.append(format_duration_hhmm(day_total_duration(curent_user, day.year, day.month, day.day)))
         #TODO add dates to context dict so we can display that was well
         #TODO include this simple report on main clock in/clock out views
+        #TODO refactor date_list name... it is not clear what it is from the name
+        #TODO now that we have the date for the latest complete week we can generate some reports for that week
     today = timezone.now()
     context = {'total_today': format_duration_hhmm(day_total_duration(curent_user, today.year, today.month, today.day)),
                'date_list': date_list,

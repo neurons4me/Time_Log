@@ -23,8 +23,7 @@ def latest_week_dates(formatted=False):
     else:
         return [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
 
-#TODO add function to calc latest complete week
 def latest_complete_week():
-    today =datetime.today()
-
-    pass
+    today = datetime.today()
+    complete_week_root_date = today - timedelta(days=7) - timedelta(today.weekday())
+    return complete_week_root_date
