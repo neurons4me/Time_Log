@@ -6,7 +6,11 @@
 {% block body_block %}
 
 
-
+    <style>
+    .report-titles{
+    {#    TODO add formatting for table... try learning nth child odd#}
+    }
+    </style>
 <body>
 <h1>Today's total clocked in time is:</h1>
 {{ total_today }}
@@ -14,7 +18,7 @@
 
 <h2>Current Week's Totals</h2>
 <table>
-    <tr>
+    <tr class="report-titles">
        <th>Monday</th>
        <th>Tuesday</th>
        <th>Wednesday</th>
@@ -24,7 +28,7 @@
        <th>Sunday</th>
     </tr>
 
-    <tr>
+    <tr class="report-dates">
         <th>{{ latest_dates_list.0 }}</th>
         <th>{{ latest_dates_list.1 }}</th>
         <th>{{ latest_dates_list.2 }}</th>
@@ -36,7 +40,7 @@
 
     </tr>
 
-    <tr>
+    <tr class="report-hours">
         {% for day_total in date_list %}
         <td>{{ day_total }}</td>
         {% endfor %}
